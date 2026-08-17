@@ -22,8 +22,39 @@ export class AppComponent implements OnInit {
   userRole$: Observable<string | null>;
   isDarkTheme$: Observable<boolean>;
   canGoBack = false;
+  currentPage = 'home';
   notifications: Notification[] = [];
   unreadCount = 0;
+
+  private readonly pageNames: Record<string, string> = {
+    '/mobile-dashboard':    'home',
+    '/appointments':        'Appointments',
+    '/medical-records':     'Medical Records',
+    '/symptom-checker':     'Symptom Checker',
+    '/prescriptions':       'Prescriptions',
+    '/lab-results':         'Lab Results',
+    '/health-tracking':     'Health Tracking',
+    '/telemedicine':        'Telemedicine',
+    '/patient-billing':     'Billing',
+    '/insurance':           'Insurance',
+    '/medical-bills':       'Medical Bills',
+    '/patients':            'Patients',
+    '/smart-scheduling':    'Scheduling',
+    '/voice-notes':         'Voice Notes',
+    '/ai-insights':         'AI Insights',
+    '/doctor-prescriptions':'Prescriptions',
+    '/clinical-notes':      'Clinical Notes',
+    '/user-management':     'User Management',
+    '/analytics':           'Analytics',
+    '/system-settings':     'System Settings',
+    '/hospital-management': 'Hospital',
+    '/billing':             'Billing',
+    '/compliance':          'Compliance',
+    '/audit-logs':          'Audit Logs',
+    '/profile':             'Profile',
+    '/settings':            'Settings',
+    '/security':            'Security',
+  };
 
   constructor(
     private store: Store<AppState>,
@@ -52,7 +83,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.canGoBack = !['/', '/login', '/patient-dashboard', '/doctor-dashboard', '/admin-dashboard'].includes(event.url);
+        const url = event.urlAfterRedirects.split('?')[0];
+        this.currentPage = this.pageNames[url] || 'home';
+        this.canGoBack = this.currentPage !== 'home';
       }
     });
     
@@ -67,6 +100,10 @@ export class AppComponent implements OnInit {
         this.notificationService.updateNotificationsForRole(role);
       }
     });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   goToHome() {

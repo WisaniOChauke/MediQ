@@ -1,145 +1,83 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>MediQ Health Excellence</span>
+
+    <!-- Back button + page title (shown when inside a feature page) -->
+    <ng-container *ngIf="(isAuthenticated$ | async) && currentPage !== 'home'; else brandBlock">
+      <button mat-icon-button (click)="goBack()" aria-label="Go back">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <span class="page-title">{{currentPage}}</span>
+    </ng-container>
+
+    <!-- Brand (shown on dashboard / login) -->
+    <ng-template #brandBlock>
+      <span class="app-brand">Medi<span class="brand-accent">Q</span></span>
+    </ng-template>
+
     <span class="spacer"></span>
+
+    <!-- Authenticated actions -->
     <ng-container *ngIf="isAuthenticated$ | async; else loginButton">
-      <button mat-icon-button (click)="goToHome()" 
-              aria-label="Go to home dashboard" 
-              matTooltip="Home Dashboard">
+
+      <!-- Home -->
+      <button mat-icon-button (click)="goToHome()" aria-label="Home" matTooltip="Home">
         <mat-icon>home</mat-icon>
       </button>
-      <button mat-icon-button [matMenuTriggerFor]="navigationMenu" 
-              aria-label="Open navigation menu"
-              matTooltip="Navigation Menu">
-        <mat-icon>menu</mat-icon>
+
+      <!-- Navigation menu -->
+      <button mat-icon-button [matMenuTriggerFor]="navigationMenu" aria-label="Navigation" matTooltip="Menu">
+        <mat-icon>grid_view</mat-icon>
       </button>
       <mat-menu #navigationMenu="matMenu" class="navigation-menu" role="menu">
         <ng-container [ngSwitch]="userRole$ | async">
-          <!-- Patient Navigation -->
+
           <ng-container *ngSwitchCase="'patient'">
             <div class="menu-header">Patient Portal</div>
-            <div class="menu-item" routerLink="/appointments" role="menuitem" tabindex="0">
-              <mat-icon>event</mat-icon>
-              <span>My Appointments</span>
-            </div>
-            <div class="menu-item" routerLink="/medical-records" role="menuitem" tabindex="0">
-              <mat-icon>folder_shared</mat-icon>
-              <span>Medical Records</span>
-            </div>
-            <div class="menu-item" routerLink="/symptom-checker" role="menuitem" tabindex="0">
-              <mat-icon>psychology</mat-icon>
-              <span>AI Symptom Checker</span>
-            </div>
-            <div class="menu-item" routerLink="/prescriptions" role="menuitem" tabindex="0">
-              <mat-icon>medication</mat-icon>
-              <span>Prescriptions</span>
-            </div>
-            <div class="menu-item" routerLink="/lab-results" role="menuitem" tabindex="0">
-              <mat-icon>biotech</mat-icon>
-              <span>Lab Results</span>
-            </div>
-            <div class="menu-item" routerLink="/health-tracking" role="menuitem" tabindex="0">
-              <mat-icon>monitor_heart</mat-icon>
-              <span>Health Tracking</span>
-            </div>
-            <div class="menu-item" routerLink="/telemedicine" role="menuitem" tabindex="0">
-              <mat-icon>video_call</mat-icon>
-              <span>Telemedicine</span>
-            </div>
-            <div class="menu-item" routerLink="/patient-billing" role="menuitem" tabindex="0">
-              <mat-icon>receipt_long</mat-icon>
-              <span>Billing & Payments</span>
-            </div>
-            <div class="menu-item" routerLink="/insurance" role="menuitem" tabindex="0">
-              <mat-icon>shield</mat-icon>
-              <span>Insurance Coverage</span>
-            </div>
-            <div class="menu-item" routerLink="/medical-bills" role="menuitem" tabindex="0">
-              <mat-icon>payment</mat-icon>
-              <span>Medical Bills</span>
-            </div>
+            <div class="menu-item" routerLink="/appointments"    role="menuitem" tabindex="0"><mat-icon>event</mat-icon><span>Appointments</span></div>
+            <div class="menu-item" routerLink="/medical-records" role="menuitem" tabindex="0"><mat-icon>folder_shared</mat-icon><span>Medical Records</span></div>
+            <div class="menu-item" routerLink="/symptom-checker" role="menuitem" tabindex="0"><mat-icon>psychology</mat-icon><span>Symptom Checker</span></div>
+            <div class="menu-item" routerLink="/prescriptions"   role="menuitem" tabindex="0"><mat-icon>medication</mat-icon><span>Prescriptions</span></div>
+            <div class="menu-item" routerLink="/lab-results"     role="menuitem" tabindex="0"><mat-icon>biotech</mat-icon><span>Lab Results</span></div>
+            <div class="menu-item" routerLink="/health-tracking" role="menuitem" tabindex="0"><mat-icon>monitor_heart</mat-icon><span>Health Tracking</span></div>
+            <div class="menu-item" routerLink="/telemedicine"    role="menuitem" tabindex="0"><mat-icon>video_call</mat-icon><span>Telemedicine</span></div>
+            <div class="menu-item" routerLink="/patient-billing" role="menuitem" tabindex="0"><mat-icon>receipt_long</mat-icon><span>Billing</span></div>
+            <div class="menu-item" routerLink="/insurance"       role="menuitem" tabindex="0"><mat-icon>shield</mat-icon><span>Insurance</span></div>
           </ng-container>
-          
-          <!-- Doctor Navigation -->
+
           <ng-container *ngSwitchCase="'doctor'">
             <div class="menu-header">Doctor Portal</div>
-            <div class="menu-item" routerLink="/patients" role="menuitem" tabindex="0">
-              <mat-icon>people</mat-icon>
-              <span>Patient Management</span>
-            </div>
-            <div class="menu-item" routerLink="/smart-scheduling" role="menuitem" tabindex="0">
-              <mat-icon>schedule</mat-icon>
-              <span>Smart Scheduling</span>
-            </div>
-            <div class="menu-item" routerLink="/voice-notes" role="menuitem" tabindex="0">
-              <mat-icon>mic</mat-icon>
-              <span>Voice Notes</span>
-            </div>
-            <div class="menu-item" routerLink="/ai-insights" role="menuitem" tabindex="0">
-              <mat-icon>insights</mat-icon>
-              <span>AI Insights</span>
-            </div>
-            <div class="menu-item" routerLink="/doctor-prescriptions" role="menuitem" tabindex="0">
-              <mat-icon>medication</mat-icon>
-              <span>Prescriptions</span>
-            </div>
-            <div class="menu-item" routerLink="/clinical-notes" role="menuitem" tabindex="0">
-              <mat-icon>note_add</mat-icon>
-              <span>Clinical Notes</span>
-            </div>
-            <div class="menu-item" routerLink="/telemedicine" role="menuitem" tabindex="0">
-              <mat-icon>video_call</mat-icon>
-              <span>Telemedicine</span>
-            </div>
+            <div class="menu-item" routerLink="/patients"             role="menuitem" tabindex="0"><mat-icon>people</mat-icon><span>Patients</span></div>
+            <div class="menu-item" routerLink="/smart-scheduling"     role="menuitem" tabindex="0"><mat-icon>schedule</mat-icon><span>Scheduling</span></div>
+            <div class="menu-item" routerLink="/voice-notes"          role="menuitem" tabindex="0"><mat-icon>mic</mat-icon><span>Voice Notes</span></div>
+            <div class="menu-item" routerLink="/ai-insights"          role="menuitem" tabindex="0"><mat-icon>insights</mat-icon><span>AI Insights</span></div>
+            <div class="menu-item" routerLink="/doctor-prescriptions" role="menuitem" tabindex="0"><mat-icon>medication</mat-icon><span>Prescriptions</span></div>
+            <div class="menu-item" routerLink="/clinical-notes"       role="menuitem" tabindex="0"><mat-icon>note_add</mat-icon><span>Clinical Notes</span></div>
+            <div class="menu-item" routerLink="/telemedicine"         role="menuitem" tabindex="0"><mat-icon>video_call</mat-icon><span>Telemedicine</span></div>
           </ng-container>
-          
-          <!-- Admin Navigation -->
+
           <ng-container *ngSwitchCase="'admin'">
             <div class="menu-header">Admin Portal</div>
-            <div class="menu-item" routerLink="/user-management" role="menuitem" tabindex="0">
-              <mat-icon>admin_panel_settings</mat-icon>
-              <span>User Management</span>
-            </div>
-            <div class="menu-item" routerLink="/analytics" role="menuitem" tabindex="0">
-              <mat-icon>analytics</mat-icon>
-              <span>Analytics & Reports</span>
-            </div>
-            <div class="menu-item" routerLink="/system-settings" role="menuitem" tabindex="0">
-              <mat-icon>settings</mat-icon>
-              <span>System Settings</span>
-            </div>
-            <div class="menu-item" routerLink="/hospital-management" role="menuitem" tabindex="0">
-              <mat-icon>local_hospital</mat-icon>
-              <span>Hospital Management</span>
-            </div>
-            <div class="menu-item" routerLink="/billing" role="menuitem" tabindex="0">
-              <mat-icon>receipt</mat-icon>
-              <span>Billing & Finance</span>
-            </div>
-            <div class="menu-item" routerLink="/compliance" role="menuitem" tabindex="0">
-              <mat-icon>verified_user</mat-icon>
-              <span>Compliance</span>
-            </div>
-            <div class="menu-item" routerLink="/audit-logs" role="menuitem" tabindex="0">
-              <mat-icon>history</mat-icon>
-              <span>Audit Logs</span>
-            </div>
+            <div class="menu-item" routerLink="/user-management"      role="menuitem" tabindex="0"><mat-icon>admin_panel_settings</mat-icon><span>Users</span></div>
+            <div class="menu-item" routerLink="/analytics"            role="menuitem" tabindex="0"><mat-icon>analytics</mat-icon><span>Analytics</span></div>
+            <div class="menu-item" routerLink="/system-settings"      role="menuitem" tabindex="0"><mat-icon>settings</mat-icon><span>System Settings</span></div>
+            <div class="menu-item" routerLink="/hospital-management"  role="menuitem" tabindex="0"><mat-icon>local_hospital</mat-icon><span>Hospital</span></div>
+            <div class="menu-item" routerLink="/billing"              role="menuitem" tabindex="0"><mat-icon>receipt</mat-icon><span>Billing</span></div>
+            <div class="menu-item" routerLink="/compliance"           role="menuitem" tabindex="0"><mat-icon>verified_user</mat-icon><span>Compliance</span></div>
+            <div class="menu-item" routerLink="/audit-logs"           role="menuitem" tabindex="0"><mat-icon>history</mat-icon><span>Audit Logs</span></div>
           </ng-container>
+
         </ng-container>
       </mat-menu>
-      <button mat-icon-button [matMenuTriggerFor]="notificationMenu" 
-              aria-label="View notifications" 
-              [attr.aria-describedby]="unreadCount > 0 ? 'notification-count' : null"
-              matTooltip="{{unreadCount > 0 ? unreadCount + ' unread notifications' : 'No new notifications'}}">
+
+      <!-- Notifications -->
+      <button mat-icon-button [matMenuTriggerFor]="notificationMenu" aria-label="Notifications"
+              [matTooltip]="unreadCount > 0 ? unreadCount + ' notifications' : 'Notifications'">
         <mat-icon [matBadge]="unreadCount" [matBadgeHidden]="unreadCount === 0" matBadgeColor="warn">notifications</mat-icon>
       </button>
       <mat-menu #notificationMenu="matMenu" class="notification-menu" role="menu">
         <div class="notification-header">
           <span>Notifications</span>
-          <button mat-icon-button (click)="markAllAsRead()" 
-                  *ngIf="unreadCount > 0"
-                  aria-label="Mark all notifications as read"
-                  matTooltip="Mark all as read">
+          <button mat-icon-button *ngIf="unreadCount > 0" (click)="markAllAsRead()" aria-label="Mark all as read" matTooltip="Mark all as read">
             <mat-icon>done_all</mat-icon>
           </button>
         </div>
@@ -147,89 +85,61 @@
           <mat-icon>notifications_none</mat-icon>
           <span>No notifications</span>
         </div>
-        <div class="notification-item" 
-             *ngFor="let notification of notifications; trackBy: trackNotification" 
-             (click)="markAsRead(notification.id)"
-             [class.unread]="!notification.read"
-             role="menuitem"
-             tabindex="0"
-             (keydown.enter)="markAsRead(notification.id)"
-             (keydown.space)="markAsRead(notification.id)">
-          <mat-icon [color]="notification.type === 'warning' ? 'warn' : 'primary'">{{getNotificationIcon(notification.type)}}</mat-icon>
+        <div class="notification-item"
+             *ngFor="let n of notifications; trackBy: trackNotification"
+             (click)="markAsRead(n.id)"
+             [class.unread]="!n.read"
+             role="menuitem" tabindex="0"
+             (keydown.enter)="markAsRead(n.id)">
+          <mat-icon>{{getNotificationIcon(n.type)}}</mat-icon>
           <div class="notification-content">
-            <div class="notification-title">{{notification.title}}</div>
-            <div class="notification-message">{{notification.message}}</div>
-            <div class="notification-time">{{getTimeAgo(notification.timestamp)}}</div>
+            <div class="notification-title">{{n.title}}</div>
+            <div class="notification-message">{{n.message}}</div>
+            <div class="notification-time">{{getTimeAgo(n.timestamp)}}</div>
           </div>
-          <div class="notification-status" *ngIf="!notification.read" aria-label="Unread notification"></div>
+          <div class="notification-status" *ngIf="!n.read"></div>
         </div>
       </mat-menu>
-      <button mat-icon-button [matMenuTriggerFor]="profileMenu" 
-              class="profile-button"
-              aria-label="Open user profile menu"
-              matTooltip="{{getCurrentUserName()}} - Profile Menu">
-        <div class="profile-avatar-wrapper">
-          <mat-icon>account_circle</mat-icon>
-          <div class="online-indicator" aria-hidden="true"></div>
-        </div>
+
+      <!-- Profile -->
+      <button mat-icon-button [matMenuTriggerFor]="profileMenu" aria-label="Profile" class="profile-button">
+        <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #profileMenu="matMenu" class="profile-menu" role="menu">
         <div class="profile-header">
-          <div class="profile-avatar">
-            <mat-icon>account_circle</mat-icon>
-          </div>
+          <mat-icon>account_circle</mat-icon>
           <div class="profile-info">
             <div class="profile-name">{{getCurrentUserName()}}</div>
             <div class="profile-role">{{getCurrentUserRole() | titlecase}}</div>
             <div class="profile-email">{{getCurrentUserEmail()}}</div>
-            <div class="profile-status">
-              <span class="status-dot online"></span>
-              <span>Online</span>
-            </div>
           </div>
         </div>
         <mat-divider></mat-divider>
-        <div class="profile-item" (click)="viewProfile()" role="menuitem" tabindex="0">
-          <mat-icon>person</mat-icon>
-          <span>My Profile</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-        <div class="profile-item" (click)="openSettings()" role="menuitem" tabindex="0">
-          <mat-icon>settings</mat-icon>
-          <span>Settings</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-        <div class="profile-item" (click)="openSecurity()" role="menuitem" tabindex="0">
-          <mat-icon>security</mat-icon>
-          <span>Security</span>
-          <mat-icon class="chevron">chevron_right</mat-icon>
-        </div>
-        <div class="profile-item" (click)="toggleTheme()" role="menuitem" tabindex="0">
+        <div class="profile-item" (click)="viewProfile()"   role="menuitem" tabindex="0"><mat-icon>person</mat-icon><span>My Profile</span><mat-icon class="chevron">chevron_right</mat-icon></div>
+        <div class="profile-item" (click)="openSettings()"  role="menuitem" tabindex="0"><mat-icon>settings</mat-icon><span>Settings</span><mat-icon class="chevron">chevron_right</mat-icon></div>
+        <div class="profile-item" (click)="openSecurity()"  role="menuitem" tabindex="0"><mat-icon>security</mat-icon><span>Security</span><mat-icon class="chevron">chevron_right</mat-icon></div>
+        <div class="profile-item" (click)="toggleTheme()"   role="menuitem" tabindex="0">
           <mat-icon>{{(isDarkTheme$ | async) ? 'light_mode' : 'dark_mode'}}</mat-icon>
           <span>{{(isDarkTheme$ | async) ? 'Light Mode' : 'Dark Mode'}}</span>
-          <div class="theme-toggle">
-            <mat-slide-toggle [checked]="isDarkTheme$ | async" (change)="toggleTheme()" aria-label="Toggle dark mode"></mat-slide-toggle>
-          </div>
+          <mat-slide-toggle [checked]="isDarkTheme$ | async" (change)="toggleTheme()" aria-label="Toggle theme"></mat-slide-toggle>
         </div>
         <mat-divider></mat-divider>
-        <div class="profile-item logout" (click)="logout()" role="menuitem" tabindex="0">
-          <mat-icon>logout</mat-icon>
-          <span>Sign Out</span>
-        </div>
+        <div class="profile-item logout" (click)="logout()" role="menuitem" tabindex="0"><mat-icon>logout</mat-icon><span>Sign Out</span></div>
       </mat-menu>
+
     </ng-container>
+
+    <!-- Unauthenticated -->
     <ng-template #loginButton>
-      <button mat-icon-button (click)="toggleTheme()" 
-              aria-label="Toggle theme" 
-              matTooltip="Switch to {{(isDarkTheme$ | async) ? 'light' : 'dark'}} mode">
+      <button mat-icon-button (click)="toggleTheme()" aria-label="Toggle theme">
         <mat-icon>{{(isDarkTheme$ | async) ? 'light_mode' : 'dark_mode'}}</mat-icon>
       </button>
-      <button mat-button routerLink="/login">Login</button>
     </ng-template>
+
   </mat-toolbar-row>
 </mat-toolbar>
 
-<main class="main-content container">
+<main class="main-content">
   <router-outlet></router-outlet>
   <app-loading-spinner></app-loading-spinner>
 </main>
