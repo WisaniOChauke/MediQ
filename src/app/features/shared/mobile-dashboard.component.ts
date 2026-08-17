@@ -277,7 +277,7 @@ export class MobileDashboardComponent implements OnInit {
     const names: Record<string, string> = {
       patient: 'Mathew Boobies',
       doctor:  'Dr. Nkosi Dlamini',
-      admin:   'T. Mokoena, MBA'
+      admin:   'N. Shimambani'
     };
 
     const roles: Record<string, string> = {
