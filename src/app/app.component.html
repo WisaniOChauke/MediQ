@@ -25,7 +25,7 @@
       </button>
 
       <!-- Navigation menu -->
-      <button mat-icon-button [matMenuTriggerFor]="navigationMenu" aria-label="Navigation" matTooltip="Menu">
+      <button mat-icon-button [matMenuTriggerFor]="navigationMenu" aria-label="Navigation" matTooltip="Menu" *ngIf="currentPage !== 'home'">
         <mat-icon>grid_view</mat-icon>
       </button>
       <mat-menu #navigationMenu="matMenu" class="navigation-menu" role="menu">
