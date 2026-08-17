@@ -242,7 +242,7 @@ export class SecurityComponent implements OnInit {
         department: 'Patient Services'
       },
       'doctor': {
-        name: 'Dr. Mambegwa',
+        name: 'Dr. Nkosi Dlamini',
         department: 'Internal Medicine & Cardiology'
       },
       'admin': {

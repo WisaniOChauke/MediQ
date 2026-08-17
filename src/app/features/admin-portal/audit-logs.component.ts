@@ -326,7 +326,7 @@ export class AuditLogsComponent implements OnInit {
   dataAccessColumns = ['timestamp', 'user', 'patient', 'dataType', 'action', 'purpose'];
 
   systemEvents = [
-    { timestamp: '2024-01-15 14:32:15', user: 'dr.mambegwa', action: 'Patient Record Access', resource: 'Patient #12345', severity: 'info', severityText: 'Info', ipAddress: '192.168.1.45' },
+    { timestamp: '2024-01-15 14:32:15', user: 'dr.dlamini', action: 'Patient Record Access', resource: 'Patient #12345', severity: 'info', severityText: 'Info', ipAddress: '192.168.1.45' },
     { timestamp: '2024-01-15 14:28:42', user: 'admin.user', action: 'System Configuration Change', resource: 'User Permissions', severity: 'medium', severityText: 'Medium', ipAddress: '192.168.1.10' },
     { timestamp: '2024-01-15 14:25:18', user: 'nurse.johnson', action: 'Medication Administration', resource: 'Patient #67890', severity: 'info', severityText: 'Info', ipAddress: '192.168.1.78' },
     { timestamp: '2024-01-15 14:22:03', user: 'unknown', action: 'Failed Login Attempt', resource: 'Login System', severity: 'high', severityText: 'High', ipAddress: '203.45.67.89' },
@@ -348,7 +348,7 @@ export class AuditLogsComponent implements OnInit {
     {
       title: 'Unusual Data Access Pattern',
       description: 'User accessed 50+ patient records in 10 minutes',
-      user: 'dr.mambegwa',
+      user: 'dr.dlamini',
       ipAddress: '192.168.1.67',
       timestamp: '2024-01-15 13:45:22',
       severity: 'medium',
@@ -377,9 +377,9 @@ export class AuditLogsComponent implements OnInit {
   ];
 
   dataAccessEvents = [
-    { timestamp: '2024-01-15 14:32:15', user: 'Dr. Mambegwa', patientId: 'PT-12345', dataType: 'Medical Records', action: 'View', purpose: 'Treatment Review' },
+    { timestamp: '2024-01-15 14:32:15', user: 'Dr. Nkosi Dlamini', patientId: 'PT-12345', dataType: 'Medical Records', action: 'View', purpose: 'Treatment Review' },
     { timestamp: '2024-01-15 14:28:42', user: 'Nurse Johnson', patientId: 'PT-67890', dataType: 'Vital Signs', action: 'Update', purpose: 'Routine Care' },
-    { timestamp: '2024-01-15 14:25:18', user: 'Dr. Mambegwa', patientId: 'PT-11111', dataType: 'Lab Results', action: 'View', purpose: 'Diagnosis' },
+    { timestamp: '2024-01-15 14:25:18', user: 'Dr. Nkosi Dlamini', patientId: 'PT-11111', dataType: 'Lab Results', action: 'View', purpose: 'Diagnosis' },
     { timestamp: '2024-01-15 14:22:03', user: 'Admin User', patientId: 'PT-22222', dataType: 'Billing Info', action: 'Export', purpose: 'Insurance Claim' },
     { timestamp: '2024-01-15 14:18:55', user: 'Pharmacist Lee', patientId: 'PT-33333', dataType: 'Prescriptions', action: 'Modify', purpose: 'Medication Review' }
   ];

@@ -17,7 +17,7 @@ import { MatNativeDateModule } from '@angular/material/core';
   imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, MatChipsModule, MatTabsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule],
   template: `
     <div class="dashboard-container">
-      <h1>Clinical Notes - Dr. Mambegwa</h1>
+      <h1>Clinical Notes - Dr. Nkosi Dlamini</h1>
       
       <div class="metrics-grid">
         <mat-card class="metric-card">

@@ -35,7 +35,7 @@ export class NotificationService {
           id: '1',
           type: 'warning' as const,
           title: 'Appointment Reminder',
-          message: 'You have an appointment with Dr. Mambegwa tomorrow at 10:00 AM',
+          message: 'You have an appointment with Dr. Nkosi Dlamini tomorrow at 10:00 AM',
           timestamp: new Date(),
           read: false
         },
@@ -61,7 +61,7 @@ export class NotificationService {
           id: '1',
           type: 'warning' as const,
           title: 'High Priority Patient',
-          message: 'David Chen requires immediate attention - cardiac follow-up with Dr. Mambegwa',
+          message: 'David Chen requires immediate attention - cardiac follow-up with Dr. Nkosi Dlamini',
           timestamp: new Date(),
           read: false
         },
@@ -95,7 +95,7 @@ export class NotificationService {
           id: '2',
           type: 'warning' as const,
           title: 'License Expiration',
-          message: 'Dr. Mambegwa medical license renewal due in 180 days',
+          message: 'Dr. Nkosi Dlamini medical license renewal due in 180 days',
           timestamp: new Date(Date.now() - 3600000),
           read: false
         },

@@ -174,7 +174,7 @@ export class TelemedicineComponent implements OnInit {
 
   patientAppointments = [
     {
-      doctor: 'Mambegwa',
+      doctor: 'Dr. Dlamini',
       specialty: 'Internal Medicine & Cardiology',
       date: 'Today',
       time: '2:00 PM',
@@ -182,7 +182,7 @@ export class TelemedicineComponent implements OnInit {
       status: 'confirmed'
     },
     {
-      doctor: 'Mambegwa',
+      doctor: 'Dr. Dlamini',
       specialty: 'Cardiology Consultation',
       date: 'Tomorrow',
       time: '10:00 AM',

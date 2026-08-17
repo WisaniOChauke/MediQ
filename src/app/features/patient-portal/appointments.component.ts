@@ -87,9 +87,9 @@ export class AppointmentsComponent implements OnInit {
     // Mock appointments based on user
     const mockAppointments = {
       'p001': [
-        { date: '2024-01-15', time: '10:00 AM', doctor: 'Dr. Mambegwa', type: 'Annual Checkup', status: 'Confirmed' },
-        { date: '2024-01-20', time: '2:30 PM', doctor: 'Dr. Mambegwa', type: 'Cardiology Follow-up', status: 'Pending' },
-        { date: '2024-01-25', time: '9:15 AM', doctor: 'Dr. Mambegwa', type: 'Lab Results Review', status: 'Confirmed' }
+        { date: '2024-01-15', time: '10:00 AM', doctor: 'Dr. Nkosi Dlamini', type: 'Annual Checkup', status: 'Confirmed' },
+        { date: '2024-01-20', time: '2:30 PM', doctor: 'Dr. Nkosi Dlamini', type: 'Cardiology Follow-up', status: 'Pending' },
+        { date: '2024-01-25', time: '9:15 AM', doctor: 'Dr. Nkosi Dlamini', type: 'Lab Results Review', status: 'Confirmed' }
       ]
     };
     

@@ -272,7 +272,7 @@ export class PatientBillingComponent implements OnInit {
     {
       service: 'Annual Physical Exam',
       date: '2024-01-10',
-      provider: 'Dr. Mambegwa',
+      provider: 'Dr. Nkosi Dlamini',
       amount: 450,
       insuranceCovered: 360,
       patientAmount: 90,
@@ -296,7 +296,7 @@ export class PatientBillingComponent implements OnInit {
     {
       service: 'Cardiology Consultation',
       date: '2023-12-15',
-      provider: 'Dr. Mambegwa',
+      provider: 'Dr. Nkosi Dlamini',
       amount: 650,
       insuranceCovered: 520,
       patientAmount: 130,
