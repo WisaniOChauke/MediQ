@@ -14,24 +14,9 @@ const routes: Routes = [
     path: 'login', 
     loadComponent: () => import('./features/auth/login/login.component').then(m => m.LoginComponent)
   },
-  { 
-    path: 'patient-dashboard', 
-    loadComponent: () => import('./features/patient-portal/patient-dashboard.component').then(m => m.PatientDashboardComponent),
-    canActivate: [AuthGuard, RoleGuard],
-    data: { role: 'patient' }
-  },
-  { 
-    path: 'doctor-dashboard', 
-    loadComponent: () => import('./features/doctor-portal/doctor-dashboard.component').then(m => m.DoctorDashboardComponent),
-    canActivate: [AuthGuard, RoleGuard],
-    data: { role: 'doctor' }
-  },
-  { 
-    path: 'admin-dashboard', 
-    loadComponent: () => import('./features/admin-portal/admin-dashboard.component').then(m => m.AdminDashboardComponent),
-    canActivate: [AuthGuard, RoleGuard],
-    data: { role: 'admin' }
-  },
+  { path: 'patient-dashboard', redirectTo: '/mobile-dashboard', pathMatch: 'full' },
+  { path: 'doctor-dashboard',  redirectTo: '/mobile-dashboard', pathMatch: 'full' },
+  { path: 'admin-dashboard',   redirectTo: '/mobile-dashboard', pathMatch: 'full' },
   { 
     path: 'symptom-checker', 
     loadComponent: () => import('./features/ai/symptom-checker/symptom-checker.component').then(m => m.SymptomCheckerComponent),
