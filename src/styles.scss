@@ -1,23 +1,50 @@
 /* MediQ Healthcare Management System - Global Styles */
 
-// Import Angular Material theme
+// Angular Material base
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-// Import design system
+// Design system — single source of truth
 @import 'styles/variables';
 @import 'styles/mixins';
-@import 'styles/light-theme';
-@import 'styles/dark-theme';
-@import 'styles/dark-theme-override';
-@import 'styles/dark-theme-force';
+@import 'styles/design-system';
 @import 'styles/animations';
-@import 'styles/enterprise-theme';
-@import 'styles/premium-theme';
-@import 'styles/world-class-enhancements';
 @import 'styles/responsive';
-@import 'styles/theme';
-@import 'styles/snackbar';
-@import 'styles/modern-theme';
+
+// Reset
+* { box-sizing: border-box; }
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Utility
+.spacer { flex: 1 1 auto; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; }
+  .no-print { display: none !important; }
+}
 
 // Reset and base styles
 * {

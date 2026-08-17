@@ -52,16 +52,16 @@ export class AuthService {
       },
       'doctor@mediq.com': { 
         role: 'doctor', 
-        name: 'Dr. Mambegwa',
+        name: 'Dr. Nkosi Dlamini',
         phone: '+1 (555) 234-5678',
         medicalLicense: 'MD-12345',
         specialization: 'Internal Medicine & Cardiology',
-        experience: '06',
+        experience: '09',
         avatar: 'assets/avatars/doctor.jpg'
       },
       'admin@mediq.com': { 
-        role: 'Chief Technology & Innovation Officer', 
-        name: 'N. Shimambani, MSc',
+        role: 'admin', 
+        name: 'T. Mokoena, MBA',
         phone: '+1 (555) 345-6789',
         avatar: 'assets/avatars/admin.jpg'
       }
