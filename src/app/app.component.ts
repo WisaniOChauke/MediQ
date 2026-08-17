@@ -14,8 +14,7 @@ import { LoadingSpinnerComponent } from './shared/components/loading-spinner.com
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  imports: [LoadingSpinnerComponent]
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   title = 'MediQ';

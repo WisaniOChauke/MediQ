@@ -13,6 +13,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
+import { LoadingSpinnerComponent } from './shared/components/loading-spinner.component';
 import { reducers, metaReducers } from './core/store';
 import { AuthEffects } from './core/store/auth/auth.effects';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
@@ -38,6 +39,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     AppRoutingModule,
     MaterialModule,
+    LoadingSpinnerComponent,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({
